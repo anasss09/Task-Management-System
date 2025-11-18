@@ -1,0 +1,114 @@
+// import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { addTask } from "../features/taskSlice";
+
+// const AddTask = () => {
+//   const [title, setTitle] = useState("");
+//   const dispatch = useDispatch();
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (!title.trim()) return;
+
+//     dispatch(addTask({ title }));
+//     setTitle("");
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         placeholder="New task..."
+//         value={title}
+//         onChange={(e) => setTitle(e.target.value)}
+//       />
+//       <button type="submit">Add</button>
+//     </form>
+//   );
+// };
+
+// export default AddTask;
+
+
+
+// import { useDispatch } from "react-redux";
+// import { toggleTask, deleteTask } from "../features/taskSlice";
+
+// const TaskList = ({ tasks }) => {
+//   const dispatch = useDispatch();
+
+//   return (
+//     <div>
+//       {tasks.map((t, indx) => (
+//         <div key={indx} className="task-item">
+//           <input
+//             type="checkbox"
+//             checked={t.completed}
+//             onChange={() => dispatch(toggleTask(t._id))}
+//           />
+//           <span>{t.title}</span>
+//           <button onClick={() => dispatch(deleteTask(t._id))}>Delete</button>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default TaskList;
+
+
+
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchTasks } from "../features/taskSlice";
+// import TaskList from "../components/TaskList";
+// import AddTask from "../components/AddTask";
+
+// const Tasks = () => {
+// 	const dispatch = useDispatch();
+// 	const { list, totalPages } = useSelector((state) => state.tasks);
+
+// 	const [page, setPage] = useState(1);
+// 	const [search, setSearch] = useState("");
+// 	const [status, setStatus] = useState("");
+
+// 	useEffect(() => {
+// 		dispatch(fetchTasks({ page, search, status }));
+// 	}, [page, search, status]);
+
+// 	return (
+// 		<div>
+// 			<h1>My Tasks</h1>
+
+// 			{/* Search */}
+// 			<input
+// 				placeholder="Search..."
+// 				onChange={(e) => setSearch(e.target.value)}
+// 			/>
+
+// 			{/* Filter */}
+// 			<select onChange={(e) => setStatus(e.target.value)}>
+// 				<option value="">All</option>
+// 				<option value="completed">Completed</option>
+// 				<option value="pending">Pending</option>
+// 			</select>
+
+// 			{/* Pagination */}
+// 			<div>
+// 				{Array.from({ length: totalPages }, (_, i) => (
+// 					<button key={i} onClick={() => setPage(i + 1)}>
+// 						{i + 1}
+// 					</button>
+// 				))}
+// 			</div>
+
+// 			{/* Add Task */}
+// 			<AddTask />
+
+// 			{/* List */}
+// 			<TaskList tasks={list} />
+// 		</div>
+// 	);
+// };
+
+// export default Tasks;

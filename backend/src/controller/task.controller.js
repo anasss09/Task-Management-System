@@ -57,7 +57,7 @@ export const getTasks = async (req, res, next) => {
     }
 }
 
-export const getTask = async (req, res) => {
+export const getTask = async (req, res, next) => {
     try {
         const { id: taskId } = req.params;
         const task = await Task.findOne({ _id: taskId, user: req.user._id });
@@ -80,7 +80,7 @@ export const getTask = async (req, res) => {
     }
 };
 
-export const updateTask = async (req, res) => {
+export const updateTask = async (req, res, next) => {
     try {
         const { id: taskId } = req.params;
 
@@ -107,7 +107,7 @@ export const updateTask = async (req, res) => {
     }
 };
 
-export const deleteTask = async (req, res) => {
+export const deleteTask = async (req, res, next) => {
     try {
         const { id: taskId } = req.params;
 
@@ -132,7 +132,7 @@ export const deleteTask = async (req, res) => {
     }
 };
 
-export const toggleTaskStatus = async (req, res) => {
+export const toggleTaskStatus = async (req, res, next) => {
     try {
         const { id: taskId } = req.params;
 
@@ -147,7 +147,7 @@ export const toggleTaskStatus = async (req, res) => {
             });
         }
 
-        task.status = task.status === "pending" ? "completed" : "pending";
+        task.status = task.status === "completed" ? "pending" : "completed";
         await task.save();
 
         res.json({

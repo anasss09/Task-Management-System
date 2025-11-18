@@ -1,6 +1,7 @@
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import CookieParser from "cookie-parser";
+import cors from 'cors'
 
 import authRouter from './routes/auth.routes.js';
 import taskRouter from './routes/task.routes.js';
@@ -12,6 +13,10 @@ const PORT = process.env.PORT;
 app.use(express.json())
 app.use(urlencoded({extended: true}))
 app.use(CookieParser())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 
 app.get('/', (req,res) => {
     res.send("Yes this is working")
