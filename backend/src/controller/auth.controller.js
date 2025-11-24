@@ -145,6 +145,24 @@ export const getLogout = (req, res) => {
     }
 }
 
+export const patchForgotPassword = async (req, res, next) => {
+    try {
+        const { password } = req.body;
+
+        if(!password) {
+            res.status(400).json({
+                success: true,
+                message: "Enter Password"
+            })
+        }
+
+        
+
+    } catch (error) {
+        
+    }
+}
+
 export const getRefresh = (req, res) => {
     try {
         const userObj = req.user.toObject();
